@@ -12,6 +12,7 @@ echo VERSION=$(cat version.txt) > props.env
 # Build the docker image for the application
 sudo docker build --no-cache -t ${DOCKER_USERNAME}/http-app:snapshot .
 imageid=$(sudo docker images | grep ${DOCKER_USERNAME}/http-app | grep snapshot | awk '{print $3}')
+echo "Building docker image is over"
 
 # Run the unit tests
 sudo docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp golang:1.6 go test -v
